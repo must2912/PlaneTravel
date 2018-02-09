@@ -390,7 +390,8 @@
               <h3 class="box-title">Input masks</h3>
             </div>
             <div class="box-body">
-              <form action="<?php echo base_url('admin/proses_tambah'); ?>" method="post">
+              <?php foreach($show as $u){ ?>
+              <form action="<?php echo base_url('admin/update_rute'); ?>" method="post">
 <!--                 <div class="form-group">
                 <label>Depart At :</label>
                 <div class="input-group date">
@@ -402,10 +403,11 @@
                 </div> -->
                 <div class="bootstrap-timepicker">
                 <div class="form-group">
+                  <input type="hidden" name="id" value="<?php echo $u->id ?>">
                   <label>Depart At:</label>
 
                   <div class="input-group">
-                    <input type="text" class="form-control timepicker" name="depart">
+                    <input type="" class="form-control timepicker" name="depart" value="<?php echo $u->depart_at ?>">
 
                     <div class="input-group-addon">
                       <i class="fa fa-clock-o"></i>
@@ -415,20 +417,21 @@
                 </div>
                 <div class="form-group">
                   <label>Rute From :</label>
-                  <input type="text" class="form-control" name="rutefrom" required="true">
+                  <input type="text" class="form-control" name="rutefrom" required="true" value="<?php echo $u->rute_from ?>">
                 </div>
                 <div class="form-group">
                   <label>Rute To :</label>
-                  <input type="text" class="form-control" name="ruteto" required="true">
+                  <input type="text" class="form-control" name="ruteto" required="true" value="<?php echo $u->rute_to ?>">
                 </div>  
                 <div class="form-group">
                   <label>Price :</label>
-                  <input type="text" class="form-control" name="price" required="true">
+                  <input type="text" class="form-control" name="price" required="true" value="<?php echo $u->price ?>">
                 </div>
                 <div class="box-footer">
                   <button type="submit" class="btn btn-primary">Submit</button>
                 </div>
               </form>
+              <?php } ?>
             </div>
             <!-- /.box-body -->
           </div>
@@ -458,7 +461,7 @@
                 </tr>
                   <?php 
                   $no = 1;
-                  foreach($rute as $s){ 
+                  foreach($show as $s){ 
                   ?>
                 <tr>
                   <td><?php echo $no++ ?></td>

@@ -42,5 +42,35 @@ class Admin extends CI_Controller{
   		$this->data_crud->input_datarute($data,'rute');
   		redirect('admin/rute');
  	}
+
+ 	function edit_data($id){
+ 		$where = array('id' => $id );
+		$data['show']=$this->data_crud->edit_data($where, 'rute')->result();
+		$this->load->view('v_edit',$data);
+ 	}
+
+ 	public function update_rute()
+	{
+		$id = $this->input->post('id');
+		$depart_at = $this->input->post('depart');
+		$rute_from = $this->input->post('rutefrom');
+		$rute_to = $this->input->post("ruteto");
+		$price = $this->input->post("price");
+
+
+		$data = array(
+   		'depart_at' => $depart_at,
+   		'rute_from' => $rute_from,
+   		'rute_to' => $rute_to,
+   		'price' => $price
+   		);
+
+		$where = array(
+			'id' => $id
+		);
+
+		$this->data_crud->update_data($where,$data,'rute');
+		redirect('admin/rute');
+	}
 }
 ?>
